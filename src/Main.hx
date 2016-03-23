@@ -1,6 +1,7 @@
 
 import luxe.Input;
 
+// TODO dire a nicolò dei proiettili che non killano l'entity
 class Main extends luxe.Game {
 
     var player : luxe.Entity;
@@ -51,7 +52,7 @@ class Main extends luxe.Game {
         // COLLISIONS
         for (enemy in enemies)
         {
-            if (playerCollision.collide(enemy) != null)
+            if (playerCollision != null && playerCollision.collide(enemy) != null)
             {
                 trace("collide");
             }

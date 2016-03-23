@@ -25,7 +25,7 @@ class VisualComponent extends luxe.Component
 	{
 		super.update(dt);
 		// sprite.pos = this.entity.pos;
-		trace(sprite.pos);
+		trace(entity.name + ": " + sprite.pos);
 	}
 
 	public override function ondestroy()
