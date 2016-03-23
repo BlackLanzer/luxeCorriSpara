@@ -11,7 +11,7 @@ class EnemyEntity
 		var enemy = new luxe.Sprite({pos : position, size : size, color : color, name : name});
 
 		enemy.add(new PhysicsComponent(80));
-		enemy.add(new CollisionComponent(Polygon.rectangle(position.x,position.y,30,30)));
+		enemy.add(new CollisionComponent(Polygon.rectangle(position.x,position.y,30,30),true,true));
 
 		return enemy;
 	}

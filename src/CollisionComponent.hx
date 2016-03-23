@@ -3,16 +3,32 @@ import luxe.collision.shapes.Polygon;
 import luxe.collision.data.ShapeCollision;
 import luxe.collision.Collision;
 
+class CollisionInfo
+{
+	public var entity : luxe.Entity;
+	public var collision : ShapeCollision;
+	public function new(e : luxe.Entity, s :ShapeCollision)
+	{
+		entity = e;
+		collision = s;
+	}
+}
+
 class CollisionComponent extends luxe.Component
 {
 	public var shape : Shape;
 	public var destroyable : Bool;
+	// TODO think a better name. 
+	// For things like walls, but not projectiles or bonuses
+	public var collidable : Bool; 
 
 
-	public function new(shape : Shape, ?name = "CollisionComponent")
+	public function new(shape : Shape, ?collidable = true, ?destroyable = false, ?name = "CollisionComponent")
 	{
 		super({name : name});
 		this.shape = shape;
+		this.destroyable = destroyable;
+		this.collidable = collidable;
 	}
 
 	// return null if it doesn't collide or ent doesn't have a CollisionComponent
@@ -26,7 +42,7 @@ class CollisionComponent extends luxe.Component
 		return Collision.shapeWithShape(this.shape, entShape.shape);
 	}
 
-	public function collideAny(ents : Map<String, luxe.Entity>, ?componentName = "CollisionComponent") : ShapeCollision
+	public function collideAny(ents : Map<String, luxe.Entity>, ?componentName = "CollisionComponent") : CollisionInfo
 	{
 		for (ent in Luxe.scene.entities)
 		{
@@ -35,8 +51,7 @@ class CollisionComponent extends luxe.Component
 				var collide = collide(ent);
 				if (collide != null)
 				{
-					trace("colliding with " + ent.name);
-					return collide;
+					return new CollisionInfo(ent, collide);
 				}
 			}
 		}
@@ -53,6 +68,8 @@ class CollisionComponent extends luxe.Component
 	public override function update(dt:Float)
 	{
 		super.update(dt);
+		// TODO quando la madonna sarà meno puttana copiare 
+		// il riferimento per maggiore efficienza
 		// shape.position = this.entity.pos;
 		shape.position.copy_from(this.entity.pos);
 	}

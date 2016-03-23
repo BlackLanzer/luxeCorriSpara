@@ -41,7 +41,7 @@ class ShootingComponent extends luxe.Component
 	{
 		if (Date.now().getTime() > lastShot + deltaShot)
 		{
-			projectiles.add(ShotEntity.create(this.entity.pos, direction, "ShotEntity"+projectileId++));
+			projectiles.add(ShotEntity.create(this.entity.pos, direction, this.entity, "ShotEntity"+projectileId++));
 			lastShot = Date.now().getTime();
 		}
 	}

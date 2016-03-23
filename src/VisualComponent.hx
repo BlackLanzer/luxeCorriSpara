@@ -13,7 +13,6 @@ class VisualComponent extends luxe.Component
 		if (color == null) color = new luxe.Color().rgb(0xf00000);
 
 		sprite = new luxe.Sprite({size : size, color : color});
-
 	}
 
 	public override function init()

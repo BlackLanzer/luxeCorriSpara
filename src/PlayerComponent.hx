@@ -35,12 +35,9 @@ class PlayerComponent extends luxe.Component
 
         // COLLISIONS
         var collision = collisionComp.collideAny(Luxe.scene.entities);
-        if (collision != null)
+        if (collision != null && collision.entity.get("CollisionComponent").collidable)
         {
-            trace("move " + moveDirection);
-            moveDirection.add(collision.unitVector);
-            trace(collision.unitVector);
-            trace("move dopo " + moveDirection);
+            moveDirection.add(collision.collision.unitVector);
         }
 
         // MOVEMENTS
