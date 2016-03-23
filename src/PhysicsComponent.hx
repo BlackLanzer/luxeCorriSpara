@@ -1,12 +1,22 @@
+import luxe.collision.data.ShapeCollision;
+
+// For moving things.
 class PhysicsComponent extends luxe.Component
 {
-	var speed : Float;
+	// TODO acceleration?
+	public var speed : Float;
+	// public var entities; //NOTE check only the collidable entities instead of all?
 
-	public function new(speed : Float, ?name : String = "PhysicsComponent")
+	public function new(speed : Float, ?collidable = false, ?destroyable = false, ?name = "PhysicsComponent")
 	{
 		super({name : name});
 
 		this.speed = speed;
+	}
+
+	override function init()
+	{
+		super.init();
 	}
 
 	public function move(direction : luxe.Vector, dt : Float, ?speed : Float)
@@ -20,5 +30,6 @@ class PhysicsComponent extends luxe.Component
 	public override function update(dt : Float)
 	{
 		super.update(dt);
+
 	}
 }

@@ -1,5 +1,7 @@
 import luxe.Vector;
 
+// INUTILE... DA RIMUOVERE
+
 class VisualComponent extends luxe.Component
 {
 	var sprite : luxe.Sprite;
@@ -24,8 +26,8 @@ class VisualComponent extends luxe.Component
 	public override function update(dt:Float)
 	{
 		super.update(dt);
-		// sprite.pos = this.entity.pos;
-		trace(entity.name + ": " + sprite.pos);
+		sprite.pos = this.entity.pos;
+		// trace(entity.name + ": " + sprite.pos);
 	}
 
 	public override function ondestroy()

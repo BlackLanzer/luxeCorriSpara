@@ -4,8 +4,8 @@ import luxe.Input;
 // TODO dire a nicolò dei proiettili che non killano l'entity
 class Main extends luxe.Game {
 
-    var player : luxe.Entity;
-    var enemies : List<luxe.Entity>;
+    var player : luxe.Sprite;
+    var enemies : List<luxe.Sprite>;
 
     override function config(config:luxe.AppConfig) {
 
@@ -14,11 +14,11 @@ class Main extends luxe.Game {
     } //config
  
     override function ready() {
-        enemies = new List<luxe.Entity>();
+        enemies = new List<luxe.Sprite>();
 
 
         player = PlayerEntity.create(new luxe.Vector(200,200));
-        enemies.add(EnemyEntity.create(new luxe.Vector(500,500)));
+        enemies.add(EnemyEntity.create(new luxe.Vector(300,300)));
     } //ready
 
     override function onkeyup( e:KeyEvent ) {
@@ -32,33 +32,9 @@ class Main extends luxe.Game {
     override function update(dt:Float) {
         super.update(dt);
 
-        var playerInput : InputComponent = player.get("InputComponent");
-        var playerPhysics : PhysicsComponent = player.get("PhysicsComponent");
-        var playerCollision : CollisionComponent = player.get("CollisionComponent");
+        
 
-
-        // MOVEMENTS
-        playerPhysics.move(playerInput.playerDirection,dt);
-
-        // SHOOTING
-        if (playerInput.shooting)
-        {
-            var projDirection = new luxe.Vector(Luxe.screen.cursor.pos.x - player.pos.x, Luxe.screen.cursor.pos.y - player.pos.y);
-            projDirection.normalize();
-
-            player.get("ShootingComponent").shoot(projDirection);
-        }
-
-        // COLLISIONS
-        for (enemy in enemies)
-        {
-            if (playerCollision != null && playerCollision.collide(enemy) != null)
-            {
-                trace("collide");
-            }
-        }
-
-        trace(player.pos);
+        // trace(player.pos);
     } //update
 
 

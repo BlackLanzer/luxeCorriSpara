@@ -1,8 +1,8 @@
 class ProjectileComponent extends luxe.Component
 {
 	public var timeToLive : Float;
-	var speed : Float;
-	var direction : luxe.Vector;
+	public var speed : Float;
+	public var direction : luxe.Vector;
 
 	public var toDestroy = false;
 
@@ -18,7 +18,6 @@ class ProjectileComponent extends luxe.Component
 
 	public override function update(dt:Float)
 	{
-
 		super.update(dt);
 
 		this.entity.pos.x += speed * direction.x * dt;
