@@ -4,6 +4,9 @@ class ShootingComponent extends luxe.Component
 	var lastShot : Float = 0;
 
 	var projectiles : List<luxe.Entity>;
+	// needed because creating too many projectiles with the same name
+	// overwrite the existing ones
+	var projectileId : Int; 
 
 	public function new(?deltaShot = 500, ?name = "ShootingComponent")
 	{
@@ -18,6 +21,7 @@ class ShootingComponent extends luxe.Component
 		super.init();
 
 		projectiles = new List<luxe.Entity>();
+		projectileId = 0;
 	}
 
 	public override function update(dt:Float)
@@ -37,8 +41,7 @@ class ShootingComponent extends luxe.Component
 	{
 		if (Date.now().getTime() > lastShot + deltaShot)
 		{
-			projectiles.add(ShotEntity.create(this.entity.pos, direction));
-
+			projectiles.add(ShotEntity.create(this.entity.pos, direction, "ShotEntity"+projectileId++));
 			lastShot = Date.now().getTime();
 		}
 	}

@@ -30,8 +30,8 @@ class VisualComponent extends luxe.Component
 
 	public override function ondestroy()
 	{
-		sprite.destroy();
 		super.ondestroy();
+		sprite.destroy();
 	}
 
 

@@ -27,7 +27,7 @@ class ProjectileComponent extends luxe.Component
 		this.timeToLive -= dt;
 		if(entity.pos.x > Luxe.screen.width || entity.pos.x < 0 || entity.pos.y > Luxe.screen.height || entity.pos.y < 0 || this.timeToLive < 0)
 		{
-			this.toDestroy = true;			
+			this.toDestroy = true;	
 		}
 	}
 }
