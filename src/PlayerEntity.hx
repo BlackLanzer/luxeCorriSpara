@@ -10,7 +10,7 @@ class PlayerEntity
 		player.add(new PhysicsComponent(100));
 		player.add(new InputComponent());
 		player.add(new ShootingComponent());
-		// player.add(new CollisionComponent(Polygon.rectangle(position.x,position.y,50,50)));
+		player.add(new CollisionComponent(Polygon.rectangle(position.x,position.y,50,50)));
 
 		return player;
 	}
